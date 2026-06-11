@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +10,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class InstructorBalanceFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        $available = fake()->randomFloat(2, 0, 500);
+        $pending = fake()->randomFloat(2, 0, 200);
+
         return [
-            //
+            'instructor_id' => User::factory(),
+            'available_balance' => $available,
+            'pending_balance' => $pending,
+            'total_balance' => round($available + $pending, 2),
         ];
     }
 }

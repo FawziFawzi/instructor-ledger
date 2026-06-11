@@ -10,7 +10,7 @@ class SubscriptionInstructorShare extends Model
     /** @use HasFactory<\Database\Factories\SubscriptionInstructorShareFactory> */
     use HasFactory;
 
-    protected $fillable = ['subscription_id', 'instructor_id', 'amount'];
+    protected $fillable = ['subscription_id', 'instructor_id', 'amount', 'instructor_percentage'];
     public function subscription()
     {
         return $this->belongsTo(Subscription::class);
