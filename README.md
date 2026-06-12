@@ -19,7 +19,7 @@ A Laravel application for managing multi-instructor revenue sharing, subscriptio
 ### 1. Clone and install dependencies
 
 ```bash
-git clone <repo-url> instructor-ledger
+git clone https://github.com/FawziFawzi/instructor-ledger.git instructor-ledger
 cd instructor-ledger
 composer install
 npm install
