@@ -11,7 +11,7 @@ class Subscription extends Model
     /** @use HasFactory<\Database\Factories\SubscriptionFactory> */
     use HasFactory;
 
-    protected $fillable = ['student_id', 'platform_fee_amount', 'amount', 'status', 'plan', 'start_date', 'end_date'];
+    protected $fillable = ['student_id', 'platform_fee_amount', 'amount', 'status', 'subscription_plan_id', 'start_date', 'end_date'];
 
     protected $casts = [
         'status' => SubscriptionStatus::class,

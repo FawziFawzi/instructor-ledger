@@ -6,11 +6,9 @@ use App\Contracts\RevenueAllocationServiceInterface;
 use App\Models\InstructorBalance;
 use App\Models\LedgerEntry;
 use App\Models\Subscription;
-use App\Models\SubscriptionInstructorShare;
 
 class RevenueAllocationService implements RevenueAllocationServiceInterface
 {
-    private $platformFeePercentage = 20;
     public function allocate(Subscription $subscription): void
     {
         \DB::transaction(function () use ($subscription) {
@@ -27,9 +25,7 @@ class RevenueAllocationService implements RevenueAllocationServiceInterface
             $subscriptionAmount = $subscription->amount;
 
             $platformFee = (int) floor(
-                $subscriptionAmount * (
-                    $this->platformFeePercentage / 100
-                )
+                $subscriptionAmount * config('platform-fee.percentage')
             );
             $subscription->update([
                 'platform_fee_amount' => $platformFee,
