@@ -3,8 +3,5 @@
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/subscriptions', [SubscriptionController::class, 'index']);
+Route::get('/', [SubscriptionController::class, 'index']);
 Route::post('/subscriptions', [SubscriptionController::class, 'store']);

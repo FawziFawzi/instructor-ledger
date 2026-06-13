@@ -76,6 +76,14 @@ php artisan serve
 
 The app will be available at `http://localhost:8000`.
 
+### 7. Create an admin account
+
+```bash
+php artisan make:filament-user
+```
+
+Follow the prompts to set a name, email, and password for the Filament admin panel. The panel is accessible at `/admin`.
+
 ---
 
 ## How to Run Tests
