@@ -32,32 +32,17 @@ class SubscriptionController extends Controller
             'plan_id' => ['required', 'exists:subscription_plans,id']
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | Temporary Student
-        |--------------------------------------------------------------------------
-        */
 
         $student = User::query()
             ->where('type', 'student')
             ->first();
 
-        /*
-        |--------------------------------------------------------------------------
-        | Selected Plan
-        |--------------------------------------------------------------------------
-        */
 
         $plan = SubscriptionPlan::findOrFail(
             $request->plan_id
         );
 
         $platformFee = $plan->price * config('platform-fee.percentage');
-        /*
-        |--------------------------------------------------------------------------
-        | Create Subscription
-        |--------------------------------------------------------------------------
-        */
 
         $subscription = Subscription::create([
             'student_id' => $student->id,
@@ -75,12 +60,6 @@ class SubscriptionController extends Controller
 
             'status' => 'active',
         ]);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Example Instructor Allocation
-        |--------------------------------------------------------------------------
-        */
 
         $instructors = User::query()
             ->where('type', 'instructor')
@@ -104,11 +83,6 @@ class SubscriptionController extends Controller
             ]);
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | Allocate Revenue
-        |--------------------------------------------------------------------------
-        */
 
         $service->allocate($subscription);
 
